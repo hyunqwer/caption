@@ -169,7 +169,7 @@ function getAudience() {
 function getApiBase() {
   // 배포 후 자신의 Worker URL로 바꾸세요.
   // 예: https://yoon-caption-worker.your-subdomain.workers.dev
-  return localStorage.getItem("apiBase") || "https://yoon-caption-worker.your-subdomain.workers.dev";
+  return localStorage.getItem("apiBase") || "https://yoon-caption-worker.hyunqwer.workers.dev";
 }
 
 generateBtn.addEventListener("click", async () => {
@@ -237,3 +237,4 @@ function download(filename, content) {
   URL.revokeObjectURL(url);
   a.remove();
 }
+
