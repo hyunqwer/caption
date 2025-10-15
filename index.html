@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>윤선생 방문학습 인스타 캡션 어시스턴트</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>윤선생 방문학습 인스타 캡션 어시스턴트</h1>
+    <p class="sub">간단한 질문에 답하면, 버전 A/B 캡션을 자동 생성합니다. (2단계부터는 질문을 하나씩 진행)</p>
+
+    <!-- 1단계 -->
+    <section id="step1" class="card">
+      <h2>1단계: 기본 정보</h2>
+
+      <label>Q1. 오늘 포스팅의 주제는 무엇인가요?</label>
+      <select id="q1">
+        <option value="" selected disabled>선택하세요</option>
+        <option>선생님 소개</option>
+        <option>수업 방식</option>
+        <option>윤선생 커리큘럼</option>
+        <option>학생의 성장 스토리</option>
+        <option>학습 후기</option>
+        <option>학습 팁/노하우 공유</option>
+        <option>교육 철학/방법론</option>
+        <option>학부모 고민 해결</option>
+        <option>일상/선생님 이야기</option>
+        <option>이벤트/상담 안내</option>
+        <option>동기부여/응원 메시지</option>
+        <option value="기타">기타 (직접 입력)</option>
+      </select>
+      <input id="q1-custom" class="mt8" placeholder="기타인 경우 직접 입력" style="display:none;" />
+
+      <label class="mt16">Q2. 누구에게 말하고 싶으신가요?</label>
+      <select id="q2">
+        <option value="" selected disabled>선택하세요</option>
+        <option>초등학생 학부모</option>
+        <option>중학생 학부모</option>
+        <option>초등학생</option>
+        <option>중학생</option>
+        <option value="여러 타겟">여러 타겟 (직접 입력)</option>
+      </select>
+      <input id="q2-custom" class="mt8" placeholder="여러 타겟 상세(예: 초3~중1 학부모)" style="display:none;" />
+
+      <label class="mt16">Q3. 오늘 올릴 사진/영상은 어떤 내용인가요?</label>
+      <input id="q3" placeholder='예: "학생이 단어 테스트 만점 받은 노트 사진"' />
+
+      <button id="toStep2" class="primary mt16">다음(2단계로)</button>
+    </section>
+
+    <!-- 2단계: 맞춤 질문 (한 번에 하나씩) -->
+    <section id="step2" class="card" style="display:none;">
+      <h2>2단계: 맞춤 질문</h2>
+      <p class="muted">주제에 필요한 정보만 하나씩 물어봅니다. 자세히 답하실수록 결과가 좋아집니다.</p>
+
+      <div id="questionBox" class="qa-box"></div>
+
+      <div class="row mt12">
+        <input id="answerInput" placeholder="여기에 답변을 입력하세요" />
+        <button id="submitAnswer" class="primary">답변 등록</button>
+      </div>
+
+      <div id="qaList" class="qa-list"></div>
+
+      <button id="toStep3" class="secondary mt16" disabled>다음(3단계로)</button>
+    </section>
+
+    <!-- 3단계: 스타일 옵션 -->
+    <section id="step3" class="card" style="display:none;">
+      <h2>3단계: 스타일 설정(선택)</h2>
+      <div class="grid">
+        <label><input type="checkbox" id="shorter" /> 더 짧게</label>
+        <label><input type="checkbox" id="longer" /> 더 길게</label>
+        <label><input type="checkbox" id="emojiMore" /> 이모지 많이</label>
+        <label><input type="checkbox" id="emojiLess" /> 이모지 적게</label>
+        <label><input type="checkbox" id="friendlier" /> 더 친근하게</label>
+        <label><input type="checkbox" id="moreProfessional" /> 더 전문적으로</label>
+        <label><input type="checkbox" id="forStudents" /> 학생이 읽기 쉽게(반말 허용)</label>
+      </div>
+
+      <label class="mt16">지역/브랜드 해시태그 보강(선택, 쉼표로 구분)</label>
+      <input id="regionTags" placeholder="#서울,#강남,#잠실 등" />
+
+      <button id="generate" class="primary mt16">캡션 생성</button>
+    </section>
+
+    <!-- 결과 -->
+    <section id="result" class="card" style="display:none;">
+      <h2>결과</h2>
+      <div id="loading" class="loading" style="display:none;">생성 중...</div>
+      <pre id="output" class="output"></pre>
+
+      <div class="row">
+        <button id="copyBtn" class="secondary">복사하기</button>
+        <button id="downloadTxt" class="secondary">.txt 다운로드</button>
+        <button id="downloadMd" class="secondary">.md 다운로드</button>
+      </div>
+    </section>
+
+    <footer>
+      <small>© 윤선생 방문학습 | 본 서비스는 OpenAI API를 사용하며, 개인정보/저작권을 준수합니다.</small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
